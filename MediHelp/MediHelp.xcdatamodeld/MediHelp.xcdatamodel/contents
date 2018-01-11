@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G1114" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Day" representedClassName="Day" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="frequency" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Frequency" inverseName="days" inverseEntity="Frequency" syncable="YES"/>
+    </entity>
+    <entity name="Dosage" representedClassName="Dosage" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="units" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="medication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="dosage" inverseEntity="Medication" syncable="YES"/>
+    </entity>
+    <entity name="Frequency" representedClassName="Frequency" syncable="YES" codeGenerationType="class">
+        <attribute name="timesPerDay" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="frequency" inverseEntity="Day" syncable="YES"/>
+        <relationship name="medication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="frequency" inverseEntity="Medication" syncable="YES"/>
+        <relationship name="times" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Time" inverseName="frequency" inverseEntity="Time" syncable="YES"/>
+    </entity>
+    <entity name="Medication" representedClassName="Medication" syncable="YES" codeGenerationType="class">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pillsLeft" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="refillReminder" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="dosage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dosage" inverseName="medication" inverseEntity="Dosage" syncable="YES"/>
+        <relationship name="frequency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Frequency" inverseName="medication" inverseEntity="Frequency" syncable="YES"/>
+    </entity>
+    <entity name="Time" representedClassName="Time" syncable="YES" codeGenerationType="class">
+        <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="frequency" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Frequency" inverseName="times" inverseEntity="Frequency" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Day" positionX="-108" positionY="162" width="128" height="73"/>
+        <element name="Dosage" positionX="-45" positionY="27" width="128" height="88"/>
+        <element name="Frequency" positionX="-371" positionY="83" width="128" height="103"/>
+        <element name="Medication" positionX="-351" positionY="-133" width="128" height="163"/>
+        <element name="Time" positionX="-182" positionY="296" width="128" height="73"/>
+    </elements>
 </model>

@@ -7,14 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0020DA84B106BE23F1A3F3E7 /* Pods_MediHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F8F3CAA74E1996B763A188 /* Pods_MediHelp.framework */; };
+		47FD5A002EB701D5E7ADC5D6 /* Pods_MediHelpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6AAAF42BBB3E93914D83D1 /* Pods_MediHelpTests.framework */; };
 		9104369E1FF7CA7500697E40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104369D1FF7CA7500697E40 /* AppDelegate.swift */; };
-		910436A01FF7CA7500697E40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104369F1FF7CA7500697E40 /* ViewController.swift */; };
+		910436A01FF7CA7500697E40 /* TreatmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104369F1FF7CA7500697E40 /* TreatmentViewController.swift */; };
 		910436A31FF7CA7500697E40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910436A11FF7CA7500697E40 /* Main.storyboard */; };
 		910436A61FF7CA7500697E40 /* MediHelp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 910436A41FF7CA7500697E40 /* MediHelp.xcdatamodeld */; };
 		910436A81FF7CA7500697E40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 910436A71FF7CA7500697E40 /* Assets.xcassets */; };
 		910436AB1FF7CA7500697E40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910436A91FF7CA7500697E40 /* LaunchScreen.storyboard */; };
 		910436B61FF7CA7500697E40 /* MediHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910436B51FF7CA7500697E40 /* MediHelpTests.swift */; };
 		910436C11FF7CA7500697E40 /* MediHelpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910436C01FF7CA7500697E40 /* MediHelpUITests.swift */; };
+		915287C42002DE440034FB35 /* MediProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915287C22002DE440034FB35 /* MediProgressHUD.swift */; };
+		915287C52002DE440034FB35 /* MediProgressHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915287C32002DE440034FB35 /* MediProgressHUD.xib */; };
+		916C25A220001CAF0093396A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916C25A120001CAF0093396A /* CoreDataManager.swift */; };
+		916C25A72000334A0093396A /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 916C25A420002E3B0093396A /* ProximaNova-Light.otf */; };
+		916C25A82000334A0093396A /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 916C25A520002E3B0093396A /* ProximaNova-Regular.otf */; };
+		916C25AA20003CF30093396A /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916C25A920003CF30093396A /* DispatchQueueExtension.swift */; };
+		916C25AF20003FE60093396A /* AddCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916C25AE20003FE60093396A /* AddCodeViewController.swift */; };
+		916C25B120005FAD0093396A /* AddMedicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916C25B020005FAD0093396A /* AddMedicationViewController.swift */; };
+		916E932C2001329700A428FC /* ChooseUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E932B2001329700A428FC /* ChooseUnitViewController.swift */; };
+		916E932F2001375800A428FC /* UnitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E932E2001375800A428FC /* UnitsTableViewCell.swift */; };
+		916E933220013E5E00A428FC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E933120013E5E00A428FC /* UIColorExtension.swift */; };
+		916E93352001634400A428FC /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E93332001634400A428FC /* PickerViewController.swift */; };
+		916E93362001634400A428FC /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916E93342001634400A428FC /* PickerViewController.xib */; };
+		916E93382001669F00A428FC /* FrequencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E93372001669F00A428FC /* FrequencyViewController.swift */; };
+		916E933A2001834400A428FC /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E93392001834400A428FC /* TimeTableViewCell.swift */; };
+		916E933C20018C8000A428FC /* DaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E933B20018C8000A428FC /* DaysTableViewCell.swift */; };
+		91DD606E20081EC900AB5866 /* TimelineDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD606D20081EC900AB5866 /* TimelineDateCell.swift */; };
+		91DD60702008212600AB5866 /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD606F2008212600AB5866 /* MedicationTableViewCell.swift */; };
+		91DD60722008261A00AB5866 /* CurrentHourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD60712008261A00AB5866 /* CurrentHourCell.swift */; };
+		F086BA62127C623398EE8431 /* Pods_MediHelpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A157B1B68F32FFB073198559 /* Pods_MediHelpUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +57,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0418725F3281101D88AA362C /* Pods-MediHelpUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediHelpUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MediHelpUITests/Pods-MediHelpUITests.release.xcconfig"; sourceTree = "<group>"; };
+		0A6AAAF42BBB3E93914D83D1 /* Pods_MediHelpTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MediHelpTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DAAB9374856A6BC49E484BF /* Pods-MediHelpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediHelpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MediHelpTests/Pods-MediHelpTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3867844885F2E9ECC185F7C5 /* Pods-MediHelpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediHelpTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MediHelpTests/Pods-MediHelpTests.release.xcconfig"; sourceTree = "<group>"; };
+		54B139A534397B97DB780448 /* Pods-MediHelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediHelp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MediHelp/Pods-MediHelp.debug.xcconfig"; sourceTree = "<group>"; };
+		5E7BECF1F8966F93A78C7316 /* Pods-MediHelpUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediHelpUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MediHelpUITests/Pods-MediHelpUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9104369A1FF7CA7500697E40 /* MediHelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediHelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9104369D1FF7CA7500697E40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9104369F1FF7CA7500697E40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9104369F1FF7CA7500697E40 /* TreatmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentViewController.swift; sourceTree = "<group>"; };
 		910436A21FF7CA7500697E40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		910436A51FF7CA7500697E40 /* MediHelp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MediHelp.xcdatamodel; sourceTree = "<group>"; };
 		910436A71FF7CA7500697E40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +77,28 @@
 		910436BC1FF7CA7500697E40 /* MediHelpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediHelpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		910436C01FF7CA7500697E40 /* MediHelpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediHelpUITests.swift; sourceTree = "<group>"; };
 		910436C21FF7CA7500697E40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		915287C22002DE440034FB35 /* MediProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediProgressHUD.swift; sourceTree = "<group>"; };
+		915287C32002DE440034FB35 /* MediProgressHUD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediProgressHUD.xib; sourceTree = "<group>"; };
+		916C25A120001CAF0093396A /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		916C25A420002E3B0093396A /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
+		916C25A520002E3B0093396A /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
+		916C25A920003CF30093396A /* DispatchQueueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueueExtension.swift; sourceTree = "<group>"; };
+		916C25AE20003FE60093396A /* AddCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCodeViewController.swift; sourceTree = "<group>"; };
+		916C25B020005FAD0093396A /* AddMedicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMedicationViewController.swift; sourceTree = "<group>"; };
+		916E932B2001329700A428FC /* ChooseUnitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseUnitViewController.swift; sourceTree = "<group>"; };
+		916E932E2001375800A428FC /* UnitsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsTableViewCell.swift; sourceTree = "<group>"; };
+		916E933120013E5E00A428FC /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		916E93332001634400A428FC /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		916E93342001634400A428FC /* PickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
+		916E93372001669F00A428FC /* FrequencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyViewController.swift; sourceTree = "<group>"; };
+		916E93392001834400A428FC /* TimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
+		916E933B20018C8000A428FC /* DaysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysTableViewCell.swift; sourceTree = "<group>"; };
+		91DD606D20081EC900AB5866 /* TimelineDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDateCell.swift; sourceTree = "<group>"; };
+		91DD606F2008212600AB5866 /* MedicationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationTableViewCell.swift; sourceTree = "<group>"; };
+		91DD60712008261A00AB5866 /* CurrentHourCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentHourCell.swift; sourceTree = "<group>"; };
+		A157B1B68F32FFB073198559 /* Pods_MediHelpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MediHelpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4EF963D1D33FB41BCA139B9 /* Pods-MediHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediHelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MediHelp/Pods-MediHelp.release.xcconfig"; sourceTree = "<group>"; };
+		E4F8F3CAA74E1996B763A188 /* Pods_MediHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MediHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0020DA84B106BE23F1A3F3E7 /* Pods_MediHelp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47FD5A002EB701D5E7ADC5D6 /* Pods_MediHelpTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +122,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F086BA62127C623398EE8431 /* Pods_MediHelpUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EEC3351CF2F6224FEFC9DD5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				54B139A534397B97DB780448 /* Pods-MediHelp.debug.xcconfig */,
+				A4EF963D1D33FB41BCA139B9 /* Pods-MediHelp.release.xcconfig */,
+				1DAAB9374856A6BC49E484BF /* Pods-MediHelpTests.debug.xcconfig */,
+				3867844885F2E9ECC185F7C5 /* Pods-MediHelpTests.release.xcconfig */,
+				5E7BECF1F8966F93A78C7316 /* Pods-MediHelpUITests.debug.xcconfig */,
+				0418725F3281101D88AA362C /* Pods-MediHelpUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		910436911FF7CA7500697E40 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +149,8 @@
 				910436B41FF7CA7500697E40 /* MediHelpTests */,
 				910436BF1FF7CA7500697E40 /* MediHelpUITests */,
 				9104369B1FF7CA7500697E40 /* Products */,
+				2EEC3351CF2F6224FEFC9DD5 /* Pods */,
+				E52D23EF9AE4FE7B7CF4BA48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,11 +167,13 @@
 		9104369C1FF7CA7500697E40 /* MediHelp */ = {
 			isa = PBXGroup;
 			children = (
+				916E932D2001374800A428FC /* Views */,
+				916C25AD20003F6F0093396A /* Storyboards */,
+				916C25AC20003F680093396A /* Managers */,
+				916C25AB20003F5D0093396A /* ViewControllers */,
+				916C25A320002E340093396A /* Resources */,
 				9104369D1FF7CA7500697E40 /* AppDelegate.swift */,
-				9104369F1FF7CA7500697E40 /* ViewController.swift */,
-				910436A11FF7CA7500697E40 /* Main.storyboard */,
 				910436A71FF7CA7500697E40 /* Assets.xcassets */,
-				910436A91FF7CA7500697E40 /* LaunchScreen.storyboard */,
 				910436AC1FF7CA7500697E40 /* Info.plist */,
 				910436A41FF7CA7500697E40 /* MediHelp.xcdatamodeld */,
 			);
@@ -128,6 +198,89 @@
 			path = MediHelpUITests;
 			sourceTree = "<group>";
 		};
+		916C25A320002E340093396A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				916E933020013E4300A428FC /* Extensions */,
+				916C25A620002E3E0093396A /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		916C25A620002E3E0093396A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				916C25A420002E3B0093396A /* ProximaNova-Light.otf */,
+				916C25A520002E3B0093396A /* ProximaNova-Regular.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		916C25AB20003F5D0093396A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9104369F1FF7CA7500697E40 /* TreatmentViewController.swift */,
+				916C25AE20003FE60093396A /* AddCodeViewController.swift */,
+				916C25B020005FAD0093396A /* AddMedicationViewController.swift */,
+				916E932B2001329700A428FC /* ChooseUnitViewController.swift */,
+				916E93372001669F00A428FC /* FrequencyViewController.swift */,
+				916E93342001634400A428FC /* PickerViewController.xib */,
+				916E93332001634400A428FC /* PickerViewController.swift */,
+				915287C22002DE440034FB35 /* MediProgressHUD.swift */,
+				915287C32002DE440034FB35 /* MediProgressHUD.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		916C25AC20003F680093396A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				916C25A120001CAF0093396A /* CoreDataManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		916C25AD20003F6F0093396A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				910436A11FF7CA7500697E40 /* Main.storyboard */,
+				910436A91FF7CA7500697E40 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		916E932D2001374800A428FC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				916E932E2001375800A428FC /* UnitsTableViewCell.swift */,
+				916E93392001834400A428FC /* TimeTableViewCell.swift */,
+				916E933B20018C8000A428FC /* DaysTableViewCell.swift */,
+				91DD606D20081EC900AB5866 /* TimelineDateCell.swift */,
+				91DD606F2008212600AB5866 /* MedicationTableViewCell.swift */,
+				91DD60712008261A00AB5866 /* CurrentHourCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		916E933020013E4300A428FC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				916C25A920003CF30093396A /* DispatchQueueExtension.swift */,
+				916E933120013E5E00A428FC /* UIColorExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		E52D23EF9AE4FE7B7CF4BA48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4F8F3CAA74E1996B763A188 /* Pods_MediHelp.framework */,
+				0A6AAAF42BBB3E93914D83D1 /* Pods_MediHelpTests.framework */,
+				A157B1B68F32FFB073198559 /* Pods_MediHelpUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +288,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 910436C51FF7CA7500697E40 /* Build configuration list for PBXNativeTarget "MediHelp" */;
 			buildPhases = (
+				8399A990655EB6FEFE8324D7 /* [CP] Check Pods Manifest.lock */,
 				910436961FF7CA7500697E40 /* Sources */,
 				910436971FF7CA7500697E40 /* Frameworks */,
 				910436981FF7CA7500697E40 /* Resources */,
+				E7734A2BBC803D17E7EC41EA /* [CP] Embed Pods Frameworks */,
+				56D52F8D3F4A03972823E864 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +308,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 910436C81FF7CA7500697E40 /* Build configuration list for PBXNativeTarget "MediHelpTests" */;
 			buildPhases = (
+				41AB97913BA2FC5331B20222 /* [CP] Check Pods Manifest.lock */,
 				910436AD1FF7CA7500697E40 /* Sources */,
 				910436AE1FF7CA7500697E40 /* Frameworks */,
 				910436AF1FF7CA7500697E40 /* Resources */,
+				F95D46106DB26365DB52DF43 /* [CP] Embed Pods Frameworks */,
+				AA3C43102F0C07E8F5D8CF50 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +329,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 910436CB1FF7CA7500697E40 /* Build configuration list for PBXNativeTarget "MediHelpUITests" */;
 			buildPhases = (
+				6011B9AC6F77F28ECA490BC3 /* [CP] Check Pods Manifest.lock */,
 				910436B81FF7CA7500697E40 /* Sources */,
 				910436B91FF7CA7500697E40 /* Frameworks */,
 				910436BA1FF7CA7500697E40 /* Resources */,
+				9CE085A7B0D0AC27692679D2 /* [CP] Embed Pods Frameworks */,
+				4F654669A68CF3602404CD93 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,9 +400,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916C25A72000334A0093396A /* ProximaNova-Light.otf in Resources */,
+				916C25A82000334A0093396A /* ProximaNova-Regular.otf in Resources */,
 				910436AB1FF7CA7500697E40 /* LaunchScreen.storyboard in Resources */,
 				910436A81FF7CA7500697E40 /* Assets.xcassets in Resources */,
+				916E93362001634400A428FC /* PickerViewController.xib in Resources */,
 				910436A31FF7CA7500697E40 /* Main.storyboard in Resources */,
+				915287C52002DE440034FB35 /* MediProgressHUD.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,14 +426,167 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		41AB97913BA2FC5331B20222 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4F654669A68CF3602404CD93 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediHelpUITests/Pods-MediHelpUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56D52F8D3F4A03972823E864 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediHelp/Pods-MediHelp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6011B9AC6F77F28ECA490BC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8399A990655EB6FEFE8324D7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9CE085A7B0D0AC27692679D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediHelpUITests/Pods-MediHelpUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA3C43102F0C07E8F5D8CF50 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediHelpTests/Pods-MediHelpTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7734A2BBC803D17E7EC41EA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediHelp/Pods-MediHelp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F95D46106DB26365DB52DF43 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediHelpTests/Pods-MediHelpTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		910436961FF7CA7500697E40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916C25B120005FAD0093396A /* AddMedicationViewController.swift in Sources */,
+				916E932C2001329700A428FC /* ChooseUnitViewController.swift in Sources */,
 				910436A61FF7CA7500697E40 /* MediHelp.xcdatamodeld in Sources */,
-				910436A01FF7CA7500697E40 /* ViewController.swift in Sources */,
+				915287C42002DE440034FB35 /* MediProgressHUD.swift in Sources */,
+				916C25AF20003FE60093396A /* AddCodeViewController.swift in Sources */,
+				916E933C20018C8000A428FC /* DaysTableViewCell.swift in Sources */,
+				91DD606E20081EC900AB5866 /* TimelineDateCell.swift in Sources */,
+				91DD60702008212600AB5866 /* MedicationTableViewCell.swift in Sources */,
+				916E933A2001834400A428FC /* TimeTableViewCell.swift in Sources */,
+				910436A01FF7CA7500697E40 /* TreatmentViewController.swift in Sources */,
+				916C25AA20003CF30093396A /* DispatchQueueExtension.swift in Sources */,
+				916C25A220001CAF0093396A /* CoreDataManager.swift in Sources */,
+				916E93352001634400A428FC /* PickerViewController.swift in Sources */,
+				916E933220013E5E00A428FC /* UIColorExtension.swift in Sources */,
+				916E93382001669F00A428FC /* FrequencyViewController.swift in Sources */,
+				916E932F2001375800A428FC /* UnitsTableViewCell.swift in Sources */,
 				9104369E1FF7CA7500697E40 /* AppDelegate.swift in Sources */,
+				91DD60722008261A00AB5866 /* CurrentHourCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +736,7 @@
 		};
 		910436C61FF7CA7500697E40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54B139A534397B97DB780448 /* Pods-MediHelp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 339G5DV22M;
@@ -430,6 +750,7 @@
 		};
 		910436C71FF7CA7500697E40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4EF963D1D33FB41BCA139B9 /* Pods-MediHelp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 339G5DV22M;
@@ -443,6 +764,7 @@
 		};
 		910436C91FF7CA7500697E40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DAAB9374856A6BC49E484BF /* Pods-MediHelpTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -458,6 +780,7 @@
 		};
 		910436CA1FF7CA7500697E40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3867844885F2E9ECC185F7C5 /* Pods-MediHelpTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -473,6 +796,7 @@
 		};
 		910436CC1FF7CA7500697E40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E7BECF1F8966F93A78C7316 /* Pods-MediHelpUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 339G5DV22M;
@@ -487,6 +811,7 @@
 		};
 		910436CD1FF7CA7500697E40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0418725F3281101D88AA362C /* Pods-MediHelpUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 339G5DV22M;
@@ -518,6 +843,7 @@
 				910436C71FF7CA7500697E40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		910436C81FF7CA7500697E40 /* Build configuration list for PBXNativeTarget "MediHelpTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +852,7 @@
 				910436CA1FF7CA7500697E40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		910436CB1FF7CA7500697E40 /* Build configuration list for PBXNativeTarget "MediHelpUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +861,7 @@
 				910436CD1FF7CA7500697E40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
