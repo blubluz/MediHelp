@@ -16,6 +16,8 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var timesTableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var daysTableView: UITableView!
     @IBOutlet weak var daysTableViewHeight: NSLayoutConstraint!
+	var medName : String?
+	var medDosage : String?
     var selectedFrequency : FrequencyType = .daily
     var selectedTimesPerDay : Int = 1
     var selectedTimes : [Int] = [28800]
@@ -30,7 +32,8 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.medicationNameLabel.text = medName
+		
         timesTableView.delegate = self
         timesTableView.dataSource = self
         daysTableView.delegate = self
@@ -61,6 +64,8 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             MediProgressHUD.dismiss(delay: 2, message: "Medicament adaugat cu succes", success: true, completion: {
                 [unowned self] in
+				let treatmentVc = self.navigationController?.viewControllers[0] as! TreatmentViewController
+				treatmentVc.medicationTable.isHidden = false
                 self.navigationController?.popToRootViewController(animated: true)
             })
         }
@@ -70,7 +75,7 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
         pickerController.pickerType = pickerType
         pickerController.delegate = self
         pickerController.modalPresentationStyle = .overCurrentContext
-        tabBarController?.present(pickerController, animated: false, completion: nil)
+        navigationController?.present(pickerController, animated: false, completion: nil)
     }
     func stringForFrequency(frequency : FrequencyType) -> String {
         switch frequency {

@@ -36,7 +36,10 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
         self.nextButton.isEnabled = false
         // Do any additional setup after loading the view.
     }
-
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.view.endEditing(true)
+	}
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -107,9 +110,9 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
         if textField == nameTextField {
             if didCommitAnimation == false {
                 didCommitAnimation = true
-                UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
-                    self.pillIconHeight.constant = 35;
-                    
+				self.pillIconHeight.constant = 35;
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                    self.view.layoutIfNeeded()
                 }, completion: nil)
             }
         }
@@ -154,6 +157,11 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
             let destination = segue.destination as! ChooseUnitViewController
             destination.delegate = self
         }
+		if segue.identifier == "goToFrequency" {
+			let destination = segue.destination as! FrequencyViewController
+			destination.medName = self.nameTextField.text
+			destination.medDosage = "\(quantityTextField.text!) \(unitTextField.text!) / doză"
+		}
     }
  
 

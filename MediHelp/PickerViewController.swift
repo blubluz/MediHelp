@@ -49,14 +49,13 @@ class PickerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewD
             datePickerView.datePickerMode = .date
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.backgroundView.alpha = 0
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+		self.backgroundView.alpha = 0.4
         self.containerBottomConstraint.constant = 28
         UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
             [unowned self] in
             self.view.layoutIfNeeded()
-            self.backgroundView.alpha = 0.4
 
             }, completion: { (success) in
                 self.containerBottomConstraint.constant=15

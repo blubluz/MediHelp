@@ -93,7 +93,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 12
+        return 13
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row==0){
@@ -101,7 +101,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
             if(timelineDateCell == nil){
                 timelineDateCell = TimelineDateCell()
             }
-            timelineDateCell!.dateLabel.text = "Luni, 14 Ianuarie"
+            timelineDateCell!.dateLabel.text = "Astăzi"
             timelineDateCell!.topBar.isHidden = true
             return timelineDateCell!
         }
@@ -112,9 +112,9 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             switch indexPath.row {
             case 1:
-                medicationCell!.configure(isChecked: true, dotColor: UIColor.red, hour: 10, medName: "Nurofen")
+                medicationCell!.configure(isTaken: .taken, dotColor: UIColor.red, hour: 3600*8, medName: "Nurofen")
             case 2:
-                medicationCell!.configure(isChecked: true, dotColor: UIColor.orange, hour: 10, medName: "Paracetamol")
+                medicationCell!.configure(isTaken: .notTaken, dotColor: UIColor.brown, hour: 3600*12, medName: "Paracetamol")
             case 3:
                 var currentHourCell = tableView.dequeueReusableCell(withIdentifier: "CurrentHourCell") as? CurrentHourCell
                 if(currentHourCell==nil){
@@ -122,7 +122,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
                 return currentHourCell!
             case 4:
-                medicationCell!.configure(isChecked: true, dotColor: UIColor.green, hour: 10, medName: "Whatever")
+                medicationCell!.configure(isTaken: .unknown, dotColor: UIColor.blue, hour: 3600*20, medName: "Lyrica")
             default:
                 return medicationCell!
             }
@@ -133,7 +133,8 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
             if(timelineDateCell == nil){
                 timelineDateCell = TimelineDateCell()
             }
-            timelineDateCell!.dateLabel.text = "Marti, 15 Ianuarie"
+            timelineDateCell!.dateLabel.text = "Marți, 15 Ianuarie"
+			timelineDateCell!.dashLines()
             return timelineDateCell!
         }
         if(indexPath.row<8&&indexPath.row>5){
@@ -143,9 +144,9 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             switch indexPath.row {
             case 6:
-                medicationCell!.configure(isChecked: true, dotColor: UIColor.red, hour: 10, medName: "Nurofen")
+                medicationCell!.configure(isTaken: .unknown, dotColor: UIColor.red, hour: 3600*8, medName: "Nurofen")
             case 7:
-                medicationCell!.configure(isChecked: false, dotColor: UIColor.brown, hour: 10, medName: "Paracetamol")
+                medicationCell!.configure(isTaken: .unknown, dotColor: UIColor.brown, hour: 3600*16, medName: "Paracetamol")
             default:
                 return medicationCell!
             }
@@ -156,6 +157,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
             if(timelineDateCell == nil){
                 timelineDateCell = TimelineDateCell()
             }
+			timelineDateCell!.dashLines()
             timelineDateCell!.dateLabel.text = "Miercuri, 16 Ianuarie"
             return timelineDateCell!
         }
@@ -166,11 +168,11 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             switch indexPath.row {
             case 9:
-                medicationCell!.configure(isChecked: true, dotColor: UIColor.red, hour: 10, medName: "Nurofen")
+                medicationCell!.configure(isTaken: .unknown, dotColor: UIColor.red, hour: 3600*8, medName: "Nurofen")
             case 10:
-                medicationCell!.configure(isChecked: true, dotColor: UIColor.blue, hour: 10, medName: "Paracetamol")
+                medicationCell!.configure(isTaken: .unknown, dotColor: UIColor.brown, hour: 3600*12, medName: "Paracetamol")
             case 11:
-                medicationCell!.configure(isChecked: true, dotColor: UIColor.purple, hour: 10, medName: "Paracetamol")
+                medicationCell!.configure(isTaken: .unknown, dotColor: UIColor.brown, hour: 3600*18, medName: "Paracetamol")
             default:
                 return medicationCell!
             }
@@ -180,10 +182,21 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
         if(timelineDateCell == nil){
             timelineDateCell = TimelineDateCell()
         }
-        timelineDateCell?.bottomBar.isHidden = true
-        timelineDateCell!.dateLabel.text = "Joi, 17 Ianuarie"
+		timelineDateCell!.dashLines()
+        timelineDateCell!.bottomBar.isHidden = true
+        timelineDateCell!.dateLabel.text = "Tratament terminat"
         return timelineDateCell!
     }
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 36
+	}
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+		alertController.addAction(UIAlertAction(title: "Ia medicament", style: .default, handler: nil))
+		alertController.addAction(UIAlertAction(title: "Reprogramează", style: .default, handler: nil))
+		alertController.addAction(UIAlertAction(title: "Anulează", style: .cancel, handler: nil))
+		self.present(alertController, animated: true, completion: nil)
+	}
     //MARK: Actions
     @IBAction func addButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "goToAddMedication", sender: sender)
