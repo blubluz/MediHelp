@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUnitDelegate {
 
     @IBOutlet weak var nameIconImageView: UIImageView!
@@ -26,6 +26,10 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
     @IBOutlet weak var containerView: UIView!
     var selectedColourButton : UIButton?
     var didCommitAnimation = false
+    var medication : Medication?
+    var comingFromEdit : Bool = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
@@ -34,7 +38,15 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
         colorView.isHidden = true
         colorTag.isHidden = true
         self.nextButton.isEnabled = false
-        // Do any additional setup after loading the view.
+        
+        
+        if let medication = medication {
+            self.nameTextField.text = medication.name
+            self.quantityTextField.text = String(describing: medication.dosage?.amount)
+            self.unitTextField.text = medication.dosage?.units
+        }else{
+            medication = Medication(entity: NSEntityDescription.entity(forEntityName: "Medication", in: CoreDataManager.mainViewContext)! , insertInto: CoreDataManager.mainViewContext)
+        }
     }
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -51,6 +63,13 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
     }
     @IBAction func nextTapped(_ sender: Any) {
         if(checkFields()==true){
+            
+            medication?.dosage?.units = unitTextField.text
+            if let quantity = Float(quantityTextField.text!){
+                medication?.dosage?.amount = quantity
+            }
+            medication?.name = nameTextField.text
+            
             performSegue(withIdentifier: "goToFrequency", sender: sender)
         }
     }
@@ -161,6 +180,8 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
 			let destination = segue.destination as! FrequencyViewController
 			destination.medName = self.nameTextField.text
 			destination.medDosage = "\(quantityTextField.text!) \(unitTextField.text!) / doză"
+            destination.comingFromEdit = comingFromEdit
+            destination.medication = medication
 		}
     }
  

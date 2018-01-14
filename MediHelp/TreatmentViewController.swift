@@ -29,8 +29,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var rightLineHeight: NSLayoutConstraint!
     
     //Properties
-    var medications: [Medication]?
-  
+    var historyDays : [HistoryDay]?
     
   
     override func viewDidLoad() {
@@ -38,17 +37,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.medicationTable.delegate = self
         self.medicationTable.dataSource = self
-
-        
-//        
-//        medication = Medication(entity: NSEntityDescription.entity(forEntityName: "Medication", in: CoreDataManager.mainViewContext)!, insertInto:CoreDataManager.mainViewContext)
-//        medication?.startDate = NSDate(timeIntervalSince1970: 121041)
-//        medication?.name = "test"
-//        medication?.personName = "persoana"
-//        
-//        CoreDataManager.saveMainContext()
-        
-        
+       
     }
     
     
@@ -68,15 +57,42 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.once(token: "TreatmentAnimations") {
-            noTreatmentLabel.isHidden = false
-            plusButton.isHidden = false
-            addMedLabel.isHidden = false
-        noTreatmentLabel.bounce(into: circleView, direction: .top)
-        plusButton.bounce(into: circleView, direction: .bottom)
-        addMedLabel.bounce(into: circleView, direction: .left)
-            useCodeButton.expand(into: self.emptyStateView, finished: nil)
+        
+        
+        let historyDaysFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "HistoryDay")
+        let sortDescriptor = NSSortDescriptor(key: "day", ascending: true)
+        historyDaysFetch.sortDescriptors = [sortDescriptor]
+        
+        do{
+            let fetchedHistoryDays = try CoreDataManager.mainViewContext.fetch(historyDaysFetch) as! [HistoryDay]
+            if fetchedHistoryDays.count > 0 {
+                for index in 0 ... fetchedHistoryDays.count-1 {
+                    print(fetchedHistoryDays[index])
+                }
+                self.medicationTable.isHidden = false
+                self.historyDays = fetchedHistoryDays
+                self.medicationTable.reloadData()
+            } else {
+                self.medicationTable.isHidden = true
+                DispatchQueue.once(token: "TreatmentAnimations") {
+                    noTreatmentLabel.isHidden = false
+                    plusButton.isHidden = false
+                    addMedLabel.isHidden = false
+                    
+                    noTreatmentLabel.bounce(into: circleView, direction: .top)
+                    plusButton.bounce(into: circleView, direction: .bottom)
+                    addMedLabel.bounce(into: circleView, direction: .left)
+                    
+                    useCodeButton.expand(into: self.emptyStateView, finished: nil)
+                }
+            }
+        }catch {
+            fatalError("Failed to fetch HistoryDays: \(error)")
+
         }
+        
+        
+      
     }
     override func viewWillAppear(_ animated: Bool) {
         
@@ -88,12 +104,21 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //MARK: - Helper methods
+    func generateHistoryTable(){
+        
+    }
     //MARK: TableView Delegate & DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 13
+//        return 13
+        if let count = self.historyDays?.count {
+            return count
+        }
+        return 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row==0){

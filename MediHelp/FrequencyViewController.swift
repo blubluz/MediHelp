@@ -23,17 +23,23 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
     var selectedTimes : [Int] = [28800]
     var days : [String] = ["Sâmbătă","Duminică","Luni","Marți","Miercuri","Joi","Vineri"]
     var selectedDays : [Int] = [0,1,2,3,4,5,6]
+    var medication : Medication?
+    var comingFromEdit : Bool = false
     @IBOutlet weak var frequencyTextField: UITextField!
     @IBOutlet weak var timesTextField: UITextField!
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var cotnainerViewTotalHeight: NSLayoutConstraint!
     @IBOutlet weak var intervalView: UIView!
     @IBOutlet weak var intervalTextField: UITextField!
+    @IBOutlet weak var startingWithLabel: UILabel!
+    @IBOutlet weak var startingWithButton: UIButton!
+    @IBOutlet weak var untilLabel: UILabel!
+    @IBOutlet weak var untilButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.medicationNameLabel.text = medName
-		
+		self.medicationDosageLabel.text = medDosage
         timesTableView.delegate = self
         timesTableView.dataSource = self
         daysTableView.delegate = self
@@ -41,39 +47,65 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
         for index in 0...6 {
             daysTableView.selectRow(at: IndexPath.init(row: index, section: 0), animated: false, scrollPosition: .none)
         }
+        daysTableViewHeight.constant = 0
+        cotnainerViewTotalHeight.constant = 500
         
-        cotnainerViewTotalHeight.constant = 400
+        if(comingFromEdit){
+            //TODO: Setup the controller accordingly
+        }else {
+            medication?.frequency?.timesPerDay = 1
+            medication?.frequency?.times = NSSet(array: selectedTimes)
+            medication?.frequency?.days = selectedDays
+            medication?.startDate = Date() as NSDate
+            medication?.endDate = nil
+            
+        }
     }
   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //MARK: - Button actions
     @IBAction func didTapFrequency(_ sender: Any) {
-        presentPickerWithType(.frequency)
+        presentPickerWithType(.frequency, nil)
     }
     @IBAction func didTapTimesPerDay(_ sender: Any) {
-        presentPickerWithType(.times)
+        presentPickerWithType(.times, nil)
     }
     @IBAction func didTapInterval(_ sender: Any) {
-        presentPickerWithType(.interval)
+        presentPickerWithType(.interval, nil)
     }
     @IBAction func didTapAdd(_ sender: Any) {
         MediProgressHUD.present(loadingText: "Se adauga...")
+        if(self.selectedFrequency == .specificDays){
+            medication?.frequency?.days = selectedDays
+        }
+        CoreDataManager.generateNewHistoryFor(medication: medication!)
+        
+        
+        let treatmentVc = self.navigationController?.viewControllers[0] as! TreatmentViewController
+        treatmentVc.medicationTable.isHidden = false
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             MediProgressHUD.dismiss(delay: 2, message: "Medicament adaugat cu succes", success: true, completion: {
                 [unowned self] in
-				let treatmentVc = self.navigationController?.viewControllers[0] as! TreatmentViewController
-				treatmentVc.medicationTable.isHidden = false
                 self.navigationController?.popToRootViewController(animated: true)
             })
         }
     }
-    func presentPickerWithType(_ pickerType: PickerType) {
+    @IBAction func startingWithTapped(_ sender: Any) {
+        presentPickerWithType(.date, sender)
+    }
+    @IBAction func untilTapped(_ sender: Any) {
+        presentPickerWithType(.date, sender)
+
+    }
+    func presentPickerWithType(_ pickerType: PickerType, _ sender: Any?) {
         let pickerController = PickerViewController()
         pickerController.pickerType = pickerType
         pickerController.delegate = self
+        pickerController.sender = sender
         pickerController.modalPresentationStyle = .overCurrentContext
         navigationController?.present(pickerController, animated: false, completion: nil)
     }
@@ -109,6 +141,9 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
         for index in 1...time {
             self.selectedTimes.insert(self.selectedTimes[index-1]+60*60*24/time, at: index)
         }
+        medication?.frequency?.timesPerDay = Int64(time)
+        medication?.frequency?.times = NSSet(array: selectedTimes)
+
         self.timesTableView.reloadData()
         
     }
@@ -122,30 +157,60 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
         self.intervalView.isHidden = true
         self.daysLabel.isHidden = true
         self.daysTableView.isHidden = true
+        if(frequency == .daily){
+            medication?.frequency?.intervalAmount = 0
+            medication?.frequency?.days =  [0,1,2,3,4,5,6]
+            
+        }
         if(frequency == .interval){
+            medication?.frequency?.intervalAmount = 2
+            medication?.frequency?.days = nil
+            
             self.intervalView.isHidden = false
             self.daysLabel.isHidden = false
             self.daysLabel.text = "Interval"
         }
         if(frequency == .specificDays){
+            medication?.frequency?.intervalAmount = 0
+            daysTableViewHeight.constant = 245
             if(self.daysTableView.isHidden == true){
-            cotnainerViewTotalHeight.constant = cotnainerViewTotalHeight.constant + 245
+            cotnainerViewTotalHeight.constant = cotnainerViewTotalHeight.constant + daysTableViewHeight.constant
             self.daysTableView.isHidden = false
                 self.daysLabel.isHidden = false
                 self.daysLabel.text = "Zile"
             }
+        }else{
+            daysTableViewHeight.constant = 0
         }
         
     }
     func didSelectInterval(_ interval: Int) {
         self.intervalTextField.text = "Odată la \(String(interval)) zile"
+        medication?.frequency?.intervalAmount = Int16(interval)
     }
-    func didSelectDate(_ date: Date) {
+    func didSelectDate(_ date: Date, _ sender : Any?) {
+        
+        if let sender = sender as? UIButton {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+            switch sender {
+            case untilButton:
+                medication?.endDate = date as NSDate
+                untilButton.setTitle(dateFormatter.string(from: date), for: .normal)
+            case startingWithButton:
+                medication?.startDate = date as NSDate
+                startingWithButton.setTitle(dateFormatter.string(from: date), for: .normal)
+            default:
+                return
+            }
+        }
         
     }
     func didSelectHour(secondsFromMidnight: Int) {
         if let selectedIndex = self.timesTableView.indexPathForSelectedRow?.row {
             self.selectedTimes[selectedIndex] = secondsFromMidnight
+            medication?.frequency?.times = NSSet(array: self.selectedTimes)
             self.timesTableView.reloadRows(at: [IndexPath(row: selectedIndex, section: 0)], with: .none)
         }
     }
@@ -191,7 +256,7 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(tableView == timesTableView){
-            presentPickerWithType(.hour)
+            presentPickerWithType(.hour, nil)
         }
         if(tableView == daysTableView){
             selectedDays.append(indexPath.row)

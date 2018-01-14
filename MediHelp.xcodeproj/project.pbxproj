@@ -33,6 +33,11 @@
 		916E93382001669F00A428FC /* FrequencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E93372001669F00A428FC /* FrequencyViewController.swift */; };
 		916E933A2001834400A428FC /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E93392001834400A428FC /* TimeTableViewCell.swift */; };
 		916E933C20018C8000A428FC /* DaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E933B20018C8000A428FC /* DaysTableViewCell.swift */; };
+		9187947A200BC93B007FB51E /* HistoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91879478200BC93B007FB51E /* HistoryEntity.swift */; };
+		9187947B200BC93B007FB51E /* HistoryEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91879479200BC93B007FB51E /* HistoryEntity+CoreDataProperties.swift */; };
+		91879482200BF892007FB51E /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91879481200BF892007FB51E /* DateExtension.swift */; };
+		91879485200BFBF5007FB51E /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91879483200BFBF5007FB51E /* Frequency.swift */; };
+		91879486200BFBF5007FB51E /* Frequency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91879484200BFBF5007FB51E /* Frequency+CoreDataProperties.swift */; };
 		91DD606E20081EC900AB5866 /* TimelineDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD606D20081EC900AB5866 /* TimelineDateCell.swift */; };
 		91DD60702008212600AB5866 /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD606F2008212600AB5866 /* MedicationTableViewCell.swift */; };
 		91DD60722008261A00AB5866 /* CurrentHourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD60712008261A00AB5866 /* CurrentHourCell.swift */; };
@@ -93,6 +98,11 @@
 		916E93372001669F00A428FC /* FrequencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyViewController.swift; sourceTree = "<group>"; };
 		916E93392001834400A428FC /* TimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
 		916E933B20018C8000A428FC /* DaysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysTableViewCell.swift; sourceTree = "<group>"; };
+		91879478200BC93B007FB51E /* HistoryEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryEntity.swift; sourceTree = "<group>"; };
+		91879479200BC93B007FB51E /* HistoryEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HistoryEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		91879481200BF892007FB51E /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		91879483200BFBF5007FB51E /* Frequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
+		91879484200BFBF5007FB51E /* Frequency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Frequency+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		91DD606D20081EC900AB5866 /* TimelineDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDateCell.swift; sourceTree = "<group>"; };
 		91DD606F2008212600AB5866 /* MedicationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationTableViewCell.swift; sourceTree = "<group>"; };
 		91DD60712008261A00AB5866 /* CurrentHourCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentHourCell.swift; sourceTree = "<group>"; };
@@ -167,6 +177,7 @@
 		9104369C1FF7CA7500697E40 /* MediHelp */ = {
 			isa = PBXGroup;
 			children = (
+				9187947C200BCAB4007FB51E /* Model */,
 				916E932D2001374800A428FC /* Views */,
 				916C25AD20003F6F0093396A /* Storyboards */,
 				916C25AC20003F680093396A /* Managers */,
@@ -224,8 +235,8 @@
 				916C25B020005FAD0093396A /* AddMedicationViewController.swift */,
 				916E932B2001329700A428FC /* ChooseUnitViewController.swift */,
 				916E93372001669F00A428FC /* FrequencyViewController.swift */,
-				916E93342001634400A428FC /* PickerViewController.xib */,
 				916E93332001634400A428FC /* PickerViewController.swift */,
+				916E93342001634400A428FC /* PickerViewController.xib */,
 				915287C22002DE440034FB35 /* MediProgressHUD.swift */,
 				915287C32002DE440034FB35 /* MediProgressHUD.xib */,
 			);
@@ -267,8 +278,20 @@
 			children = (
 				916C25A920003CF30093396A /* DispatchQueueExtension.swift */,
 				916E933120013E5E00A428FC /* UIColorExtension.swift */,
+				91879481200BF892007FB51E /* DateExtension.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		9187947C200BCAB4007FB51E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				91879483200BFBF5007FB51E /* Frequency.swift */,
+				91879484200BFBF5007FB51E /* Frequency+CoreDataProperties.swift */,
+				91879478200BC93B007FB51E /* HistoryEntity.swift */,
+				91879479200BC93B007FB51E /* HistoryEntity+CoreDataProperties.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		E52D23EF9AE4FE7B7CF4BA48 /* Frameworks */ = {
@@ -581,13 +604,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91879486200BFBF5007FB51E /* Frequency+CoreDataProperties.swift in Sources */,
 				916C25B120005FAD0093396A /* AddMedicationViewController.swift in Sources */,
+				91879482200BF892007FB51E /* DateExtension.swift in Sources */,
 				916E932C2001329700A428FC /* ChooseUnitViewController.swift in Sources */,
 				910436A61FF7CA7500697E40 /* MediHelp.xcdatamodeld in Sources */,
 				915287C42002DE440034FB35 /* MediProgressHUD.swift in Sources */,
 				916C25AF20003FE60093396A /* AddCodeViewController.swift in Sources */,
 				916E933C20018C8000A428FC /* DaysTableViewCell.swift in Sources */,
 				91DD606E20081EC900AB5866 /* TimelineDateCell.swift in Sources */,
+				9187947B200BC93B007FB51E /* HistoryEntity+CoreDataProperties.swift in Sources */,
 				91DD60702008212600AB5866 /* MedicationTableViewCell.swift in Sources */,
 				916E933A2001834400A428FC /* TimeTableViewCell.swift in Sources */,
 				910436A01FF7CA7500697E40 /* TreatmentViewController.swift in Sources */,
@@ -596,6 +622,8 @@
 				916E93352001634400A428FC /* PickerViewController.swift in Sources */,
 				916E933220013E5E00A428FC /* UIColorExtension.swift in Sources */,
 				916E93382001669F00A428FC /* FrequencyViewController.swift in Sources */,
+				9187947A200BC93B007FB51E /* HistoryEntity.swift in Sources */,
+				91879485200BFBF5007FB51E /* Frequency.swift in Sources */,
 				916E932F2001375800A428FC /* UnitsTableViewCell.swift in Sources */,
 				9104369E1FF7CA7500697E40 /* AppDelegate.swift in Sources */,
 				91DD60722008261A00AB5866 /* CurrentHourCell.swift in Sources */,
@@ -753,6 +781,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 339G5DV22M;
 				INFOPLIST_FILE = MediHelp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MihaiH.MediHelp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -767,6 +796,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 339G5DV22M;
 				INFOPLIST_FILE = MediHelp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MihaiH.MediHelp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

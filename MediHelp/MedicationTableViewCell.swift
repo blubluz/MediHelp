@@ -7,7 +7,7 @@
 //
 
 import UIKit
-enum MedicationTakenState {
+@objc public enum MedicationTakenState : Int16 {
 	case taken,notTaken,unknown
 }
 class MedicationTableViewCell: UITableViewCell {

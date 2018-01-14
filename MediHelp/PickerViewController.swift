@@ -16,7 +16,7 @@ enum FrequencyType{
 protocol PickerControllerDelegate {
     func didSelectFrequencyType(_ frequency : FrequencyType)
     func didSelectHour(secondsFromMidnight: Int)
-    func didSelectDate(_ date : Date)
+    func didSelectDate(_ date : Date, _ sender : Any?)
     func didSelectTimesPerDay(_ time : Int)
     func didSelectInterval(_ interval : Int)
 }
@@ -30,6 +30,7 @@ class PickerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var containerBottomConstraint: NSLayoutConstraint!
     var delegate : PickerControllerDelegate?
     var pickerType : PickerType = .frequency
+    var sender : Any?
     let frequencyArray : [FrequencyType] = [.daily,.specificDays,.interval,.asNeeded]
     
     override func viewDidLoad() {
@@ -80,7 +81,7 @@ class PickerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewD
         case .hour:
             delegate?.didSelectHour(secondsFromMidnight:pickerView.selectedRow(inComponent: 0)*60*60 + pickerView.selectedRow(inComponent: 1)*60)
         case .date:
-            delegate?.didSelectDate(datePickerView.date)
+            delegate?.didSelectDate(datePickerView.date, self.sender)
         case .interval:
             delegate?.didSelectInterval(pickerView.selectedRow(inComponent: 1)+2)
         }
