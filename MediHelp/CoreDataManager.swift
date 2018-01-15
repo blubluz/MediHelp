@@ -25,15 +25,16 @@ class CoreDataManager {
         let calendar = Calendar.current
         // Replace the hour (time) of both dates with 00:00
         let startDate = calendar.startOfDay(for: medication.startDate! as Date)
-        let endDate = calendar.startOfDay(for: medication.endDate! as Date)
-        
-        if(medication.endDate != nil){
-            let components = calendar.dateComponents([.day], from: startDate, to: endDate)
-
-            if let days = components.day{
-                numberOfDays = days  // This will return the number of day(s) between dates
-            }
-        }
+		
+		if let medEndDate = medication.endDate as Date? {
+			let endDate = calendar.startOfDay(for: medEndDate)
+			let components = calendar.dateComponents([.day], from: startDate, to: endDate)
+			
+			if let days = components.day{
+				numberOfDays = days  // This will return the number of day(s) between dates
+			}
+		}
+		let endDate = startDate.addingTimeInterval(TimeInterval(numberOfDays*60*60*24))
         let historyDaysFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "HistoryDay")
         historyDaysFetch.predicate = NSPredicate(format: "day >= %@ && day <= %@", startDate as NSDate, endDate as NSDate)
         let sortDescriptor = NSSortDescriptor(key: "day", ascending: true)
@@ -43,7 +44,9 @@ class CoreDataManager {
             let fetchedHistoryDays = try CoreDataManager.mainViewContext.fetch(historyDaysFetch) as! [HistoryDay]
             var intervalAmount = 1
             if let interval = medication.frequency?.intervalAmount {
+				if(interval > 0 ){
                 intervalAmount = Int(interval)
+				}
             }
             for index in stride(from: 0, to: numberOfDays, by:intervalAmount) {
                 let newDate = Date(timeInterval: TimeInterval(24*60*60*index), since: startDate)
@@ -51,10 +54,10 @@ class CoreDataManager {
                     continue
                 }
                 let historyDay = getHistoryDayFrom(historyDays: fetchedHistoryDays, withDate: newDate)
-                if let sortedTimesArray = medication.frequency?.times?.sortedArray(using: [NSSortDescriptor(key: "time", ascending: true)]) as? [Int64]  {
+                if let sortedTimesArray = medication.frequency?.times?.sorted() {
                     for time in sortedTimesArray {
                         let historyEntity = HistoryEntity(entity: NSEntityDescription.entity(forEntityName: "HistoryEntity", in: mainViewContext)!, insertInto: mainViewContext)
-                        historyEntity.hour = time
+                        historyEntity.hour = Int64(time)
                         historyEntity.medication = medication
                         if(startDate < Date()){
                             historyEntity.taken = .notTaken

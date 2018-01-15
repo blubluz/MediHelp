@@ -30,11 +30,15 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //Properties
     var historyDays : [HistoryDay]?
+	var historyDaysAndEntities : [Any] = []
     
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		if let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last {
+			NSLog("Documents Directory: %@", directoryUrl as! NSURL)
+		}
         self.medicationTable.delegate = self
         self.medicationTable.dataSource = self
        
@@ -67,10 +71,17 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
             let fetchedHistoryDays = try CoreDataManager.mainViewContext.fetch(historyDaysFetch) as! [HistoryDay]
             if fetchedHistoryDays.count > 0 {
                 for index in 0 ... fetchedHistoryDays.count-1 {
-                    print(fetchedHistoryDays[index])
+                    print(fetchedHistoryDays[index].historyEntities?.count)
                 }
                 self.medicationTable.isHidden = false
                 self.historyDays = fetchedHistoryDays
+				self.historyDaysAndEntities = []
+				for historyDay in historyDays! {
+					self.historyDaysAndEntities.append(historyDay)
+					for historyEntity in (historyDay.historyEntities?.sortedArray(using: [NSSortDescriptor(key: "hour", ascending: true)]))! {
+						self.historyDaysAndEntities.append(historyEntity)
+					}
+				}
                 self.medicationTable.reloadData()
             } else {
                 self.medicationTable.isHidden = true
@@ -112,15 +123,33 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: TableView Delegate & DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 13
-        if let count = self.historyDays?.count {
-            return count
-        }
-        return 0
-    }
+	}
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return historyDaysAndEntities.count
+	}
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		
+		if let historyObject = self.historyDaysAndEntities[indexPath.row] as? HistoryDay {
+			var timelineDateCell = tableView.dequeueReusableCell(withIdentifier: "TimelineDateCell") as? TimelineDateCell
+			if(timelineDateCell == nil){
+				timelineDateCell = TimelineDateCell()
+			}
+			if indexPath.row == 0 {
+				timelineDateCell!.topBar.isHidden = true
+			}
+			timelineDateCell!.dateLabel.text = "Test123"
+			return timelineDateCell!
+		}
+		if let historyObject = self.historyDaysAndEntities[indexPath.row] as? HistoryEntity {
+			var medicationCell = tableView.dequeueReusableCell(withIdentifier: "MedicationTableViewCell") as? MedicationTableViewCell
+			if(medicationCell == nil){
+				medicationCell = MedicationTableViewCell()
+			}
+			medicationCell!.configure(isTaken: historyObject.taken, dotColor: historyObject.medication?.tagColor, hour: Int(historyObject.hour), medName: historyObject.medication?.name)
+			return medicationCell!
+		}
+		/*
         if(indexPath.row==0){
             var timelineDateCell = tableView.dequeueReusableCell(withIdentifier: "TimelineDateCell") as? TimelineDateCell
             if(timelineDateCell == nil){
@@ -203,10 +232,12 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             return medicationCell!
         }
+			*/
         var timelineDateCell = tableView.dequeueReusableCell(withIdentifier: "TimelineDateCell") as? TimelineDateCell
         if(timelineDateCell == nil){
             timelineDateCell = TimelineDateCell()
         }
+
 		timelineDateCell!.dashLines()
         timelineDateCell!.bottomBar.isHidden = true
         timelineDateCell!.dateLabel.text = "Tratament terminat"

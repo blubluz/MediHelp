@@ -44,8 +44,12 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
             self.nameTextField.text = medication.name
             self.quantityTextField.text = String(describing: medication.dosage?.amount)
             self.unitTextField.text = medication.dosage?.units
+			
         }else{
             medication = Medication(entity: NSEntityDescription.entity(forEntityName: "Medication", in: CoreDataManager.mainViewContext)! , insertInto: CoreDataManager.mainViewContext)
+			let dosage = Dosage(entity: NSEntityDescription.entity(forEntityName: "Dosage", in: CoreDataManager.mainViewContext)!, insertInto: CoreDataManager.mainViewContext)
+			medication?.dosage = dosage
+			medication?.tagColor = UIColor.red
         }
     }
 	override func viewWillDisappear(_ animated: Bool) {
@@ -87,7 +91,7 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
             default:
                 break;
             }
-            
+            medication?.tagColor = senderButton.backgroundColor
             UIView.animate(withDuration: 0.08, animations: {
                 senderButton.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
             }, completion: { (success) in

@@ -23,7 +23,7 @@ class MedicationTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    public func configure(isTaken : MedicationTakenState, dotColor: UIColor, hour : Int, medName: String){
+    public func configure(isTaken : MedicationTakenState, dotColor: UIColor?, hour : Int, medName: String?){
         self.dotView.backgroundColor = dotColor;
         self.timeLabel.textColor = dotColor;
         self.medicationNameLabel.textColor = dotColor;

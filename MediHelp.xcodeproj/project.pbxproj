@@ -42,6 +42,8 @@
 		91DD60702008212600AB5866 /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD606F2008212600AB5866 /* MedicationTableViewCell.swift */; };
 		91DD60722008261A00AB5866 /* CurrentHourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD60712008261A00AB5866 /* CurrentHourCell.swift */; };
 		F086BA62127C623398EE8431 /* Pods_MediHelpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A157B1B68F32FFB073198559 /* Pods_MediHelpUITests.framework */; };
+		F76624AF200CF2910064A05A /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76624AD200CF2910064A05A /* Medication.swift */; };
+		F76624B0200CF2910064A05A /* Medication+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76624AE200CF2910064A05A /* Medication+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		A157B1B68F32FFB073198559 /* Pods_MediHelpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MediHelpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EF963D1D33FB41BCA139B9 /* Pods-MediHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediHelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MediHelp/Pods-MediHelp.release.xcconfig"; sourceTree = "<group>"; };
 		E4F8F3CAA74E1996B763A188 /* Pods_MediHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MediHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F76624AD200CF2910064A05A /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
+		F76624AE200CF2910064A05A /* Medication+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Medication+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +290,8 @@
 		9187947C200BCAB4007FB51E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F76624AD200CF2910064A05A /* Medication.swift */,
+				F76624AE200CF2910064A05A /* Medication+CoreDataProperties.swift */,
 				91879483200BFBF5007FB51E /* Frequency.swift */,
 				91879484200BFBF5007FB51E /* Frequency+CoreDataProperties.swift */,
 				91879478200BC93B007FB51E /* HistoryEntity.swift */,
@@ -571,11 +577,29 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MediHelp/Pods-MediHelp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/DCAnimationKit/DCAnimationKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RZTransitions/RZTransitions.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/TimePicker/TimePicker.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DCAnimationKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RZTransitions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TimePicker.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -608,6 +632,7 @@
 				916C25B120005FAD0093396A /* AddMedicationViewController.swift in Sources */,
 				91879482200BF892007FB51E /* DateExtension.swift in Sources */,
 				916E932C2001329700A428FC /* ChooseUnitViewController.swift in Sources */,
+				F76624B0200CF2910064A05A /* Medication+CoreDataProperties.swift in Sources */,
 				910436A61FF7CA7500697E40 /* MediHelp.xcdatamodeld in Sources */,
 				915287C42002DE440034FB35 /* MediProgressHUD.swift in Sources */,
 				916C25AF20003FE60093396A /* AddCodeViewController.swift in Sources */,
@@ -622,6 +647,7 @@
 				916E93352001634400A428FC /* PickerViewController.swift in Sources */,
 				916E933220013E5E00A428FC /* UIColorExtension.swift in Sources */,
 				916E93382001669F00A428FC /* FrequencyViewController.swift in Sources */,
+				F76624AF200CF2910064A05A /* Medication.swift in Sources */,
 				9187947A200BC93B007FB51E /* HistoryEntity.swift in Sources */,
 				91879485200BFBF5007FB51E /* Frequency.swift in Sources */,
 				916E932F2001375800A428FC /* UnitsTableViewCell.swift in Sources */,

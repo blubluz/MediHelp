@@ -20,23 +20,11 @@ extension Frequency {
     @NSManaged public var timesPerDay: Int64
     @NSManaged public var days: [Int]?
     @NSManaged public var medication: Medication?
-    @NSManaged public var times: NSSet?
+    @NSManaged public var times: [Int]?
 
 }
 
 // MARK: Generated accessors for times
 extension Frequency {
-
-    @objc(addTimesObject:)
-    @NSManaged public func addToTimes(_ value: Time)
-
-    @objc(removeTimesObject:)
-    @NSManaged public func removeFromTimes(_ value: Time)
-
-    @objc(addTimes:)
-    @NSManaged public func addToTimes(_ values: NSSet)
-
-    @objc(removeTimes:)
-    @NSManaged public func removeFromTimes(_ values: NSSet)
 
 }

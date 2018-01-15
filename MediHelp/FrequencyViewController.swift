@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 class FrequencyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PickerControllerDelegate {
 
     @IBOutlet weak var medicationNameLabel: UILabel!
@@ -38,6 +38,7 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+	
         self.medicationNameLabel.text = medName
 		self.medicationDosageLabel.text = medDosage
         timesTableView.delegate = self
@@ -53,8 +54,10 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
         if(comingFromEdit){
             //TODO: Setup the controller accordingly
         }else {
-            medication?.frequency?.timesPerDay = 1
-            medication?.frequency?.times = NSSet(array: selectedTimes)
+			let frequency = Frequency(entity: NSEntityDescription.entity(forEntityName: "Frequency", in: CoreDataManager.mainViewContext)!, insertInto: CoreDataManager.mainViewContext)
+			medication?.frequency = frequency
+			medication?.frequency?.timesPerDay = 1
+            medication?.frequency?.times = selectedTimes
             medication?.frequency?.days = selectedDays
             medication?.startDate = Date() as NSDate
             medication?.endDate = nil
@@ -81,6 +84,7 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
         if(self.selectedFrequency == .specificDays){
             medication?.frequency?.days = selectedDays
         }
+		
         CoreDataManager.generateNewHistoryFor(medication: medication!)
         
         
@@ -142,7 +146,7 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
             self.selectedTimes.insert(self.selectedTimes[index-1]+60*60*24/time, at: index)
         }
         medication?.frequency?.timesPerDay = Int64(time)
-        medication?.frequency?.times = NSSet(array: selectedTimes)
+        medication?.frequency?.times = selectedTimes
 
         self.timesTableView.reloadData()
         
@@ -210,7 +214,7 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
     func didSelectHour(secondsFromMidnight: Int) {
         if let selectedIndex = self.timesTableView.indexPathForSelectedRow?.row {
             self.selectedTimes[selectedIndex] = secondsFromMidnight
-            medication?.frequency?.times = NSSet(array: self.selectedTimes)
+            medication?.frequency?.times = selectedTimes
             self.timesTableView.reloadRows(at: [IndexPath(row: selectedIndex, section: 0)], with: .none)
         }
     }
