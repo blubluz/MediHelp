@@ -140,11 +140,13 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
             height  = height + 245
         }
         cotnainerViewTotalHeight.constant = height + CGFloat(35.0 * Double(selectedTimesPerDay))
-        
-        self.selectedTimes[0] = 8*60*60;
-        for index in 1...time {
+        selectedTimes = []
+		selectedTimes.insert(8*60*60, at: 0)
+		if(time>1){
+        for index in 1...time-1 {
             self.selectedTimes.insert(self.selectedTimes[index-1]+60*60*24/time, at: index)
         }
+		}
         medication?.frequency?.timesPerDay = Int64(time)
         medication?.frequency?.times = selectedTimes
 

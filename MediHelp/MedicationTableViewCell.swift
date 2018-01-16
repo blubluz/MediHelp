@@ -19,9 +19,14 @@ class MedicationTableViewCell: UITableViewCell {
     @IBOutlet weak var rescheduleButton: UIButton!
     @IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var lineView: UIView!
+	let yourViewBorder = CAShapeLayer()
 	override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+		yourViewBorder.strokeColor = UIColor.lightGray.cgColor
+		yourViewBorder.lineDashPattern = [2,3]
+		yourViewBorder.frame = lineView.bounds
+		yourViewBorder.fillColor = nil
+		yourViewBorder.path = UIBezierPath(rect: CGRect(x:lineView.bounds.origin.x, y: lineView.bounds.origin.y, width: 0, height: lineView.bounds.size.height)).cgPath
     }
     public func configure(isTaken : MedicationTakenState, dotColor: UIColor?, hour : Int, medName: String?){
         self.dotView.backgroundColor = dotColor;
@@ -36,20 +41,19 @@ class MedicationTableViewCell: UITableViewCell {
 		case .notTaken:
 			self.containerView.backgroundColor = UIColor(red: 211/255.0, green: 41/255.0, blue: 30/255.0, alpha: 0.19)
 		case .unknown:
-			let yourViewBorder = CAShapeLayer()
-			yourViewBorder.strokeColor = UIColor.lightGray.cgColor
-			yourViewBorder.lineDashPattern = [2,3]
-			yourViewBorder.frame = lineView.bounds
-			yourViewBorder.fillColor = nil
-			yourViewBorder.path = UIBezierPath(rect: CGRect(x: lineView.bounds.origin.x, y: lineView.bounds.origin.y, width: 0, height: lineView.bounds.size.height)).cgPath
 			lineView.layer.addSublayer(yourViewBorder)
-			lineView.backgroundColor = UIColor.white
+			lineView.backgroundColor = UIColor.clear
 			self.containerView.backgroundColor = UIColor.white
 		}
         
         self.medicationNameLabel.text = medName
     }
-    
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		lineView.backgroundColor = UIColor.black
+		self.containerView.backgroundColor = UIColor.black
+		yourViewBorder.removeFromSuperlayer()
+	}
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

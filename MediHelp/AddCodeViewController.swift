@@ -33,8 +33,8 @@ class AddCodeViewController: UIViewController {
         gradient.locations = [gradTopStart,gradTopEnd,gradBottomStart,gradBottomEnd]
         view?.layoutIfNeeded()
         gradient.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-        let fromColor = UIColor(colorLiteralRed: 114.0/255, green: 208.0/255, blue: 226.0/255, alpha: 1)
-        let toColor = UIColor(colorLiteralRed: 28.0/255, green: 152.0/255, blue: 232.0/255, alpha: 1)
+        let fromColor = UIColor(red: 114.0/255, green: 208.0/255, blue: 226.0/255, alpha: 1)
+        let toColor = UIColor(red: 28.0/255, green: 152.0/255, blue: 232.0/255, alpha: 1)
         gradient.colors = [fromColor.cgColor,toColor.cgColor]
         view?.layer.insertSublayer(gradient, at: 0)
     }

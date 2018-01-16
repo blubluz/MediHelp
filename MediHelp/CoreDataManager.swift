@@ -20,6 +20,59 @@ class CoreDataManager {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.saveContext()
     }
+	class public func getMeds() -> [Medication]? {
+		let medsFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Medication")
+		do{
+			let fetchedMeds = try CoreDataManager.mainViewContext.fetch(medsFetch) as! [Medication]
+			if fetchedMeds.count > 0 {
+				return fetchedMeds
+			}else{
+				return nil
+			}
+		}catch {
+			fatalError("Failed to fetch HistoryDays: \(error)")
+			return nil
+		}
+	}
+	class public func getHistoryDays() -> [HistoryDay]? {
+		let historyDaysFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "HistoryDay")
+		let sortDescriptor = NSSortDescriptor(key: "day", ascending: true)
+		historyDaysFetch.sortDescriptors = [sortDescriptor]
+		do{
+			let fetchedHistoryDays = try CoreDataManager.mainViewContext.fetch(historyDaysFetch) as! [HistoryDay]
+			if fetchedHistoryDays.count > 0 {
+				return fetchedHistoryDays
+			}else{
+				return nil
+			}
+		}catch {
+			fatalError("Failed to fetch HistoryDays: \(error)")
+			return nil
+		}
+	}
+	class public func resyncHistoryEntities() {
+		let historyDaysFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "HistoryDay")
+		historyDaysFetch.predicate = NSPredicate(format: "day <= %@", Date() as NSDate)
+		let sortDescriptor = NSSortDescriptor(key: "day", ascending: true)
+		historyDaysFetch.sortDescriptors = [sortDescriptor]
+		do{
+			let fetchedHistoryDays = try CoreDataManager.mainViewContext.fetch(historyDaysFetch) as! [HistoryDay]
+			if fetchedHistoryDays.count > 0 {
+				for historyDay in fetchedHistoryDays {
+					for historyEntity in (historyDay.historyEntities?.sortedArray(using: [NSSortDescriptor(key: "hour", ascending: true)]))! {
+						if let historyEntity = historyEntity as? HistoryEntity {
+							if(historyEntity.taken == .unknown){
+								historyEntity.taken = .notTaken
+							}
+						}
+					}
+				}
+				saveMainContext()
+			}
+		}catch {
+			fatalError("Failed to fetch HistoryDays: \(error)")
+		}
+	}
     class public func generateNewHistoryFor(medication : Medication) {
         var numberOfDays = 30
         let calendar = Calendar.current
@@ -45,7 +98,7 @@ class CoreDataManager {
             var intervalAmount = 1
             if let interval = medication.frequency?.intervalAmount {
 				if(interval > 0 ){
-                intervalAmount = Int(interval)
+                	intervalAmount = Int(interval)
 				}
             }
             for index in stride(from: 0, to: numberOfDays, by:intervalAmount) {
@@ -59,7 +112,7 @@ class CoreDataManager {
                         let historyEntity = HistoryEntity(entity: NSEntityDescription.entity(forEntityName: "HistoryEntity", in: mainViewContext)!, insertInto: mainViewContext)
                         historyEntity.hour = Int64(time)
                         historyEntity.medication = medication
-                        if(startDate < Date()){
+                        if(newDate < Date()){
                             historyEntity.taken = .notTaken
                         }else{
                             historyEntity.taken = .unknown
