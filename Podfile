@@ -11,10 +11,12 @@ target 'MediHelp' do
     pod 'TPKeyboardAvoiding’, '~> 1.3'
     pod 'SVProgressHUD'
     pod 'BEMCheckBox'
+    pod 'Firebase/Core'
     pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
     pod 'AlamofireNetworkActivityLogger', '~> 2.0'
     pod 'DCAnimationKit'
     pod 'RZTransitions'
+    pod 'Firebase/Database'
     pod 'TimePicker'
 
   target 'MediHelpTests' do

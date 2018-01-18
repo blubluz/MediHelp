@@ -7,13 +7,16 @@
 //
 
 import UIKit
-
+import FirebaseDatabase
 class AddCodeViewController: UIViewController {
 
     @IBOutlet weak var sendButton: UIButton!
-    
+    var ref: DatabaseReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        
         self.addGradientInView(view: view)
         sendButton.layer.borderColor = UIColor.white.cgColor
         sendButton.layer.borderWidth = 0.5

@@ -38,6 +38,7 @@
 		91879482200BF892007FB51E /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91879481200BF892007FB51E /* DateExtension.swift */; };
 		91879485200BFBF5007FB51E /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91879483200BFBF5007FB51E /* Frequency.swift */; };
 		91879486200BFBF5007FB51E /* Frequency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91879484200BFBF5007FB51E /* Frequency+CoreDataProperties.swift */; };
+		9190385820115CA300FC9E42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9190385720115CA300FC9E42 /* GoogleService-Info.plist */; };
 		91DD606E20081EC900AB5866 /* TimelineDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD606D20081EC900AB5866 /* TimelineDateCell.swift */; };
 		91DD60702008212600AB5866 /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD606F2008212600AB5866 /* MedicationTableViewCell.swift */; };
 		91DD60722008261A00AB5866 /* CurrentHourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DD60712008261A00AB5866 /* CurrentHourCell.swift */; };
@@ -105,6 +106,7 @@
 		91879481200BF892007FB51E /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		91879483200BFBF5007FB51E /* Frequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		91879484200BFBF5007FB51E /* Frequency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Frequency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9190385720115CA300FC9E42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91DD606D20081EC900AB5866 /* TimelineDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDateCell.swift; sourceTree = "<group>"; };
 		91DD606F2008212600AB5866 /* MedicationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationTableViewCell.swift; sourceTree = "<group>"; };
 		91DD60712008261A00AB5866 /* CurrentHourCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentHourCell.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		9104369C1FF7CA7500697E40 /* MediHelp */ = {
 			isa = PBXGroup;
 			children = (
+				9190385720115CA300FC9E42 /* GoogleService-Info.plist */,
 				9187947C200BCAB4007FB51E /* Model */,
 				916E932D2001374800A428FC /* Views */,
 				916C25AD20003F6F0093396A /* Storyboards */,
@@ -430,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				916C25A72000334A0093396A /* ProximaNova-Light.otf in Resources */,
+				9190385820115CA300FC9E42 /* GoogleService-Info.plist in Resources */,
 				916C25A82000334A0093396A /* ProximaNova-Regular.otf in Resources */,
 				910436AB1FF7CA7500697E40 /* LaunchScreen.storyboard in Resources */,
 				910436A81FF7CA7500697E40 /* Assets.xcassets in Resources */,
@@ -471,7 +475,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		4F654669A68CF3602404CD93 /* [CP] Copy Pods Resources */ = {
@@ -519,7 +523,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8399A990655EB6FEFE8324D7 /* [CP] Check Pods Manifest.lock */ = {
@@ -537,7 +541,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9CE085A7B0D0AC27692679D2 /* [CP] Embed Pods Frameworks */ = {
