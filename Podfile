@@ -18,6 +18,8 @@ target 'MediHelp' do
     pod 'RZTransitions'
     pod 'Firebase/Database'
     pod 'TimePicker'
+    pod 'SwiftyJSON'
+
 
   target 'MediHelpTests' do
     inherit! :search_paths

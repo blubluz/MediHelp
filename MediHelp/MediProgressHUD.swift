@@ -46,16 +46,23 @@ class MediProgressHUD: UIViewController {
         //TODO: Animations
         progressHud.dismiss(animated: false, completion: nil)
     }
-    public class func dismiss(delay: Int, message : String, success : Bool, completion: @escaping ()->Void) {
+    public class func dismiss(delay: Int, message : String, success : Bool, completion: (()->Void)? = nil ){
         
         progressHud.activityIndicator.stopAnimating()
         progressHud.loadingFinishedImageView.image = UIImage(named: "ic_check")
         progressHud.loadingLabel.text = message
-        progressHud.loadingLabel.textColor = UIColor.green
         progressHud.loadingFinishedImageView.isHidden = false
+        if(success == false){
+            progressHud.loadingFinishedImageView.image = UIImage(named: "cross-512")
+        }else{
+            
+            progressHud.loadingFinishedImageView.image = UIImage(named: "checkmark-flat")
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
             dismiss()
-            completion()
+            if let completionBlock = completion{
+                completionBlock()
+            }
         }
         
     }

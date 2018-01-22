@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import DCAnimationKit
+import FirebaseDatabase
 class TreatmentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
@@ -25,18 +26,28 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var medicationTable: UITableView!
     
 	@IBOutlet weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var editButton: UIBarButtonItem!
 	//Constraints
     @IBOutlet weak var leftLineHeight: NSLayoutConstraint!
     @IBOutlet weak var rightLineHeight: NSLayoutConstraint!
     
     //Properties
+    var ref: DatabaseReference!
+
     var historyDays : [HistoryDay]?
 	var historyDaysAndEntities : [Any] = []
     
   
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+        ref = Database.database().reference()
+//        let image = UIImage(named: "MediHelpLogo3")
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+//        imageView.image = image
+//        imageView.contentMode = .scaleAspectFit
+//        
+//        self.navigationItem.titleView = imageView
 		if let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last {
 			NSLog("Documents Directory: %@", directoryUrl as NSURL)
 		}
@@ -76,6 +87,46 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
     
 	//MARK: - Actions
 	
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        if let fetchedMeds = CoreDataManager.getMeds() {
+            
+            var medsArray = Array<Dictionary<String,Any>>()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            for med in fetchedMeds {
+                var medDict = [String : Any]()
+                var freqDict = [String : Any]()
+                var dosageDict = [String : Any]()
+                dosageDict["amount"] = med.dosage?.amount
+                dosageDict["units"] = med.dosage?.units
+                medDict["dosage"] = dosageDict
+                freqDict["days"] = med.frequency?.days
+                freqDict["interval_amount"] = med.frequency?.intervalAmount
+                freqDict["times"] = med.frequency?.times
+                freqDict["times_per_day"] = med.frequency?.timesPerDay
+                medDict["frequency"] = freqDict
+                medDict["name"] = med.name
+                medDict["tag_color"] = med.tagColor?.toHexString()
+                medDict["start_date"] = dateFormatter.string(from: med.startDate! as Date)
+                medDict["end_date"] = dateFormatter.string(from: med.endDate! as Date)
+                medsArray.append(medDict)
+            }
+            let randomKey = randomString(length: 8)
+            ref.child(randomKey).setValue(["medications" : medsArray])
+            let alert = UIAlertController(title: "Codul tratamentului:", message:randomKey, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Copiază", style: .default, handler: { (action) in
+                UIPasteboard.general.string = randomKey
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Eroare", message: "Nu ai niciun tratament", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+           
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 	@IBAction func trashButtonTapped(_ sender: Any) {
 		let alertController = UIAlertController(title: "Sterge tratamentul", message: "Ești sigur că dorești să ștergi acest tratament?", preferredStyle: .alert)
 		alertController.addAction(UIAlertAction(title: "Da", style: .destructive, handler: { (action) in
@@ -98,6 +149,21 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
 		present(alertController, animated: true, completion: nil)
 	}
 	//MARK: - Helper methods
+    func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
 	func refetchData() {
 		if let fetchedHistoryDays = CoreDataManager.getHistoryDays() {
 			
@@ -105,25 +171,34 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
 			for index in 0 ... fetchedHistoryDays.count-1 {
 				print(fetchedHistoryDays[index].historyEntities?.count ?? "No history entities found for this day")
 			}
-			self.deleteButton.isEnabled = false
+			self.deleteButton.isEnabled = true
+            self.shareButton.isEnabled = true
+            self.editButton.isEnabled = true
 			self.medicationTable.isHidden = false
 			self.historyDays = fetchedHistoryDays
 			
 			//Create an array of history days and entities combined
 			//Helps us for easily passing data to the table
-			self.historyDaysAndEntities = []
+            self.historyDaysAndEntities = []
+            let calendar = Calendar.current
+            var index = 0, scrollToIndex = 0
 			for historyDay in historyDays! {
+                if historyDay.day == calendar.startOfDay(for: Date()) as NSDate{
+                    scrollToIndex = index
+                }
 				self.historyDaysAndEntities.append(historyDay)
 				self.historyDaysAndEntities.append(contentsOf: (historyDay.historyEntities?.sortedArray(using: [NSSortDescriptor(key: "hour", ascending: true)]))!)
-				//				for historyEntity in  {
-				//					self.historyDaysAndEntities.append(historyEntity)
-				//				}
+                index = index + (historyDay.historyEntities?.count)! + 1
+			
 			}
-			self.medicationTable.reloadData()
+            self.medicationTable.reloadData()
+                self.medicationTable.scrollToRow(at: IndexPath.init(row: scrollToIndex, section: 0) , at: .middle, animated: true)
 		}else{
-			self.deleteButton.isEnabled = true
+			self.deleteButton.isEnabled = false
 			self.historyDays = nil
-			self.medicationTable.isHidden = true
+            self.medicationTable.isHidden = true
+            self.shareButton.isEnabled = false
+            self.editButton.isEnabled = false
 			DispatchQueue.once(token: "TreatmentAnimations") {
 				noTreatmentLabel.isHidden = false
 				plusButton.isHidden = false
@@ -160,7 +235,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
 				timelineDateCell!.dashLines()
 			} 
 			if(historyObject.day! as Date == Calendar.current.startOfDay(for: Date())){
-				timelineDateCell!.dateLabel.text = "Astazi"
+				timelineDateCell!.dateLabel.text = "Astăzi"
 			}else{
 				
 				timelineDateCell!.dateLabel.text = dateFormatter.string(from: historyObject.day! as Date)
@@ -172,7 +247,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
 			if(medicationCell == nil){
 				medicationCell = MedicationTableViewCell()
 			}
-			medicationCell!.configure(isTaken: historyObject.taken, dotColor: historyObject.medication?.tagColor, hour: Int(historyObject.hour), medName: historyObject.medication?.name)
+			medicationCell!.configure(historyEntity: historyObject)
 			return medicationCell!
 		}
 		}
@@ -187,7 +262,7 @@ class TreatmentViewController: UIViewController, UITableViewDelegate, UITableVie
         return timelineDateCell!
     }
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 36
+		return 40
 	}
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		

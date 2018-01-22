@@ -180,7 +180,7 @@ class FrequencyViewController: UIViewController, UITableViewDataSource, UITableV
             medication?.frequency?.intervalAmount = 0
             daysTableViewHeight.constant = 245
             if(self.daysTableView.isHidden == true){
-            cotnainerViewTotalHeight.constant = cotnainerViewTotalHeight.constant + daysTableViewHeight.constant
+            cotnainerViewTotalHeight.constant = cotnainerViewTotalHeight.constant + daysTableViewHeight.constant + 30
             self.daysTableView.isHidden = false
                 self.daysLabel.isHidden = false
                 self.daysLabel.text = "Zile"

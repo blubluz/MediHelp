@@ -18,6 +18,7 @@ class MedicationTableViewCell: UITableViewCell {
     @IBOutlet weak var takePillButton: UIButton!
     @IBOutlet weak var rescheduleButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var dosageLabel: UILabel!
 	@IBOutlet weak var lineView: UIView!
 	let yourViewBorder = CAShapeLayer()
 	override func awakeFromNib() {
@@ -47,6 +48,12 @@ class MedicationTableViewCell: UITableViewCell {
 		}
         
         self.medicationNameLabel.text = medName
+    }
+    public func configure(historyEntity : HistoryEntity){
+        self.configure(isTaken: historyEntity.taken, dotColor: historyEntity.medication?.tagColor, hour: Int(historyEntity.hour), medName: historyEntity.medication?.name)
+        self.dosageLabel.text = "\(String(format: "%.0f", historyEntity.medication?.dosage?.amount ?? 0)) \(historyEntity.medication?.dosage?.units ?? "")"
+        self.dosageLabel.textColor = historyEntity.medication?.tagColor
+
     }
 	override func prepareForReuse() {
 		super.prepareForReuse()

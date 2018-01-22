@@ -50,6 +50,7 @@ class AddMedicationViewController: UIViewController,UITextFieldDelegate,ChooseUn
 			let dosage = Dosage(entity: NSEntityDescription.entity(forEntityName: "Dosage", in: CoreDataManager.mainViewContext)!, insertInto: CoreDataManager.mainViewContext)
 			medication?.dosage = dosage
 			medication?.tagColor = UIColor.red
+            
         }
     }
 	override func viewWillDisappear(_ animated: Bool) {

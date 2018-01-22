@@ -56,12 +56,15 @@ class CoreDataManager {
 		let sortDescriptor = NSSortDescriptor(key: "day", ascending: true)
 		historyDaysFetch.sortDescriptors = [sortDescriptor]
 		do{
+            let calendar = Calendar.current
+
 			let fetchedHistoryDays = try CoreDataManager.mainViewContext.fetch(historyDaysFetch) as! [HistoryDay]
 			if fetchedHistoryDays.count > 0 {
 				for historyDay in fetchedHistoryDays {
 					for historyEntity in (historyDay.historyEntities?.sortedArray(using: [NSSortDescriptor(key: "hour", ascending: true)]))! {
 						if let historyEntity = historyEntity as? HistoryEntity {
-							if(historyEntity.taken == .unknown){
+                            let timeInterval = Date().timeIntervalSince1970 - calendar.startOfDay(for: Date()).timeIntervalSince1970
+							if(historyEntity.taken == .unknown && Double(historyEntity.hour) <= timeInterval){
 								historyEntity.taken = .notTaken
 							}
 						}
@@ -112,7 +115,9 @@ class CoreDataManager {
                         let historyEntity = HistoryEntity(entity: NSEntityDescription.entity(forEntityName: "HistoryEntity", in: mainViewContext)!, insertInto: mainViewContext)
                         historyEntity.hour = Int64(time)
                         historyEntity.medication = medication
-                        if(newDate < Date()){
+                        let timeInterval = Date().timeIntervalSince1970 - calendar.startOfDay(for: Date()).timeIntervalSince1970
+                        
+                        if(newDate <= calendar.startOfDay(for: Date()) && Double(time) <= timeInterval){
                             historyEntity.taken = .notTaken
                         }else{
                             historyEntity.taken = .unknown
