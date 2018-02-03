@@ -17,6 +17,7 @@
 		910436AB1FF7CA7500697E40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910436A91FF7CA7500697E40 /* LaunchScreen.storyboard */; };
 		910436B61FF7CA7500697E40 /* MediHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910436B51FF7CA7500697E40 /* MediHelpTests.swift */; };
 		910436C11FF7CA7500697E40 /* MediHelpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910436C01FF7CA7500697E40 /* MediHelpUITests.swift */; };
+		911F6EF520167EDF001C16A2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911F6EF420167EDF001C16A2 /* SettingsViewController.swift */; };
 		915287C42002DE440034FB35 /* MediProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915287C22002DE440034FB35 /* MediProgressHUD.swift */; };
 		915287C52002DE440034FB35 /* MediProgressHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915287C32002DE440034FB35 /* MediProgressHUD.xib */; };
 		916C25A220001CAF0093396A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916C25A120001CAF0093396A /* CoreDataManager.swift */; };
@@ -85,6 +86,7 @@
 		910436BC1FF7CA7500697E40 /* MediHelpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediHelpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		910436C01FF7CA7500697E40 /* MediHelpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediHelpUITests.swift; sourceTree = "<group>"; };
 		910436C21FF7CA7500697E40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		911F6EF420167EDF001C16A2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		915287C22002DE440034FB35 /* MediProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediProgressHUD.swift; sourceTree = "<group>"; };
 		915287C32002DE440034FB35 /* MediProgressHUD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediProgressHUD.xib; sourceTree = "<group>"; };
 		916C25A120001CAF0093396A /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				916E93342001634400A428FC /* PickerViewController.xib */,
 				915287C22002DE440034FB35 /* MediProgressHUD.swift */,
 				915287C32002DE440034FB35 /* MediProgressHUD.xib */,
+				911F6EF420167EDF001C16A2 /* SettingsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				9187947A200BC93B007FB51E /* HistoryEntity.swift in Sources */,
 				91879485200BFBF5007FB51E /* Frequency.swift in Sources */,
 				916E932F2001375800A428FC /* UnitsTableViewCell.swift in Sources */,
+				911F6EF520167EDF001C16A2 /* SettingsViewController.swift in Sources */,
 				9104369E1FF7CA7500697E40 /* AppDelegate.swift in Sources */,
 				91DD60722008261A00AB5866 /* CurrentHourCell.swift in Sources */,
 			);

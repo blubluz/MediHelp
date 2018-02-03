@@ -64,8 +64,14 @@ class CoreDataManager {
 					for historyEntity in (historyDay.historyEntities?.sortedArray(using: [NSSortDescriptor(key: "hour", ascending: true)]))! {
 						if let historyEntity = historyEntity as? HistoryEntity {
                             let timeInterval = Date().timeIntervalSince1970 - calendar.startOfDay(for: Date()).timeIntervalSince1970
-							if(historyEntity.taken == .unknown && Double(historyEntity.hour) <= timeInterval){
-								historyEntity.taken = .notTaken
+							if(historyEntity.taken == .unknown){
+                                if(historyDay.day! == calendar.startOfDay(for: Date()) as NSDate){
+                                    if(Double(historyEntity.hour) <= timeInterval){
+                                        historyEntity.taken = .notTaken
+                                    }
+                                }else{
+                                    historyEntity.taken = .notTaken
+                                }
 							}
 						}
 					}
